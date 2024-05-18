@@ -13,7 +13,7 @@ const grpcObj = loadPackageDefinition(packageDef) as unknown as ProtoGrpcType;
 
 const example = grpcObj.example;
 
-const text: string = process.argv[3];
+const text: string = process.argv[2];
 
 const client = new example.Message(
   "localhost:40000",
