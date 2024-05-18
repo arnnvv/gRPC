@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run server.ts"
+    "dev": "bun run client.ts",
+    "start": "bun run server.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -13,7 +14,6 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "latest",
-    "@grpc/proto-loader": "latest",
-    "grpc": "latest"
+    "@grpc/proto-loader": "latest"
   }
 }

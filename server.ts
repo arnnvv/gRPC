@@ -17,24 +17,34 @@ const grpcObj = loadPackageDefinition(packageDef) as unknown as ProtoGrpcType;
 
 const example = grpcObj.example;
 
+const todos: {
+  id: number;
+  text: string;
+}[] = [];
+
 const handler: MessageHandlers = {
   add: (
     call: ServerUnaryCall<Item__Output, Item>,
     callback: sendUnaryData<Item>,
   ) => {
-    console.log(call);
+    const item = {
+      id: todos.length + 1,
+      text: call.request.text,
+    };
+    todos.push(item);
+    callback(null, item);
   },
   read: (
     call: ServerUnaryCall<void__Output, Items>,
     callback: sendUnaryData<Items>,
   ) => {
-    console.log(call);
+    callback(null, { items: todos });
   },
 };
 
 const server = new Server();
 
 server.addService(example.Message.service, handler);
-server.bind("0.0.0.0:40000", ServerCredentials.createInsecure());
-
-server.start();
+server.bindAsync("0.0.0.0:40000", ServerCredentials.createInsecure(), () =>
+  server.start(),
+);
