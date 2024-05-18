@@ -1,6 +1,11 @@
-syntax = "proto3"
+syntax = "proto3";
 
-    package example;
+package example;
+
+service Message {
+  rpc add(Item) returns (Item);
+  rpc read(void) returns (Items);
+}
 
 message void {}
 
@@ -10,8 +15,3 @@ message Item {
 }
 
 message Items { repeated Item items = 1; }
-
-service message {
-  rpc add(Item) returns (Item);
-  rpc read(void) returns (Items);
-}

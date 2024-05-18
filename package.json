@@ -10,5 +10,10 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "latest",
+    "@grpc/proto-loader": "latest",
+    "grpc": "latest"
   }
 }
