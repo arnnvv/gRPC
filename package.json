@@ -4,8 +4,8 @@
   "type": "commonjs",
   "scripts": {
     "build": "tsc -b",
-    "dev": "node client.js",
-    "start": "node server.js"
+    "dev": "node dist/client.js",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
     "@types/bun": "latest"
