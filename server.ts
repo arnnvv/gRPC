@@ -38,6 +38,7 @@ const handler: MessageHandlers = {
     call: ServerUnaryCall<void__Output, Items>,
     callback: sendUnaryData<Items>,
   ) => {
+    console.log(call);
     callback(null, { items: todos });
   },
 };
