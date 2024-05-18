@@ -1,0 +1,17 @@
+syntax = "proto3"
+
+    package example;
+
+message void {}
+
+message Item {
+  int32 id = 1;
+  string text = 2;
+}
+
+message Items { repeated Item items = 1; }
+
+service message {
+  rpc add(Item) returns (Item);
+  rpc read(void) returns (Items);
+}

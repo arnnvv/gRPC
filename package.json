@@ -1,0 +1,14 @@
+{
+  "name": "grpc",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run server.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
