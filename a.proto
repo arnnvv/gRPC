@@ -5,6 +5,7 @@ package example;
 service Message {
   rpc add(Item) returns (Item);
   rpc read(Novoid) returns (Items);
+  rpc readStream(Novoid) returns (stream Item);
 }
 
 message Novoid {}

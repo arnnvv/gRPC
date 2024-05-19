@@ -4,6 +4,7 @@ import {
   Server,
   ServerCredentials,
   ServerUnaryCall,
+  ServerWritableStream,
 } from "@grpc/grpc-js";
 import { PackageDefinition, loadSync } from "@grpc/proto-loader";
 import { ProtoGrpcType } from "./generated/a";
@@ -38,7 +39,14 @@ const handler: MessageHandlers = {
     call: ServerUnaryCall<Novoid__Output, Items>,
     callback: sendUnaryData<Items>,
   ) => {
+    console.log(call);
     callback(null, { items: todos });
+  },
+  readStream: (call: ServerWritableStream<Novoid__Output, Item>) => {
+    todos.forEach((todo: { id: number; text: string }): boolean =>
+      call.write(todo),
+    );
+    call.end();
   },
 };
 

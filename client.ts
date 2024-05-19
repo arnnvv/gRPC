@@ -1,4 +1,5 @@
 import {
+  ClientReadableStream,
   ServiceError,
   credentials,
   loadPackageDefinition,
@@ -6,7 +7,6 @@ import {
 import { PackageDefinition, loadSync } from "@grpc/proto-loader";
 import { ProtoGrpcType } from "./generated/a";
 import { Item__Output } from "./generated/example/Item";
-import { Items__Output } from "./generated/example/Items";
 
 const packageDef: PackageDefinition = loadSync("a.proto", {});
 const grpcObj = loadPackageDefinition(packageDef) as unknown as ProtoGrpcType;
@@ -34,12 +34,20 @@ client.add(
   },
 );
 
+/*
 client.read({}, (e: ServiceError | null, res: Items__Output | undefined) => {
   try {
     console.log(`Received from server: ${JSON.stringify(res)}`);
-    //if (!res?.items)
-    //  res?.items.forEach((a: Item__Output) => console.log(a.text));
   } catch {
     console.error(`Error in receiving: ${JSON.stringify(e?.message)}`);
   }
 });
+Shoves everything at once lot of processing in big case
+*/
+
+const call: ClientReadableStream<Item__Output> = client.readStream({});
+call.on("data", (item) =>
+  console.log(`Received from server: ${JSON.stringify(item)}`),
+);
+
+call.on("end", () => console.log(`Server ended stream`));
