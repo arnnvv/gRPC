@@ -37,7 +37,9 @@ client.add(
 client.read({}, (e: ServiceError | null, res: Items__Output | undefined) => {
   try {
     console.log(`Received from server: ${JSON.stringify(res)}`);
+    //if (!res?.items)
+    //  res?.items.forEach((a: Item__Output) => console.log(a.text));
   } catch {
-    console.error(`Error in receiving: ${JSON.stringify(e)}`);
+    console.error(`Error in receiving: ${JSON.stringify(e?.message)}`);
   }
 });

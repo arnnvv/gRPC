@@ -9,10 +9,10 @@ import { PackageDefinition, loadSync } from "@grpc/proto-loader";
 import { ProtoGrpcType } from "./generated/a";
 import { MessageHandlers } from "./generated/example/Message";
 import { Item, Item__Output } from "./generated/example/Item";
-import { void__Output } from "./generated/example/void";
+import { Novoid__Output } from "./generated/example/Novoid";
 import { Items } from "./generated/example/Items";
 
-const packageDef: PackageDefinition = loadSync("a.proto", {});
+const packageDef: PackageDefinition = loadSync("./a.proto", {});
 const grpcObj = loadPackageDefinition(packageDef) as unknown as ProtoGrpcType;
 
 const example = grpcObj.example;
@@ -35,7 +35,7 @@ const handler: MessageHandlers = {
     callback(null, item);
   },
   read: (
-    call: ServerUnaryCall<void__Output, Items>,
+    call: ServerUnaryCall<Novoid__Output, Items>,
     callback: sendUnaryData<Items>,
   ) => {
     callback(null, { items: todos });

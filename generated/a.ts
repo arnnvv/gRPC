@@ -12,7 +12,7 @@ export interface ProtoGrpcType {
     Item: MessageTypeDefinition
     Items: MessageTypeDefinition
     Message: SubtypeConstructor<typeof grpc.Client, _example_MessageClient> & { service: _example_MessageDefinition }
-    void: MessageTypeDefinition
+    Novoid: MessageTypeDefinition
   }
 }
 
